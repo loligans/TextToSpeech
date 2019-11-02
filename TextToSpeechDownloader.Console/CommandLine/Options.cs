@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace WaveNetCapture.CommandLine
+namespace TextToSpeechDownloader.CommandLine
 {
     public class Options
     {

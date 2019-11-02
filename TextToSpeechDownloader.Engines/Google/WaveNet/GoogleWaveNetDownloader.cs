@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Google.WaveNet.Models;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WaveNetCapture.Google.Models;
+using TextToSpeechDownloader.Common;
 
-namespace WaveNetCapture.Google
+namespace Google.WaveNet
 {
-    public interface ITextToSpeechDownloader
-    {
-        /// <summary>
-        /// Downloads audio from a TTS engine.
-        /// </summary>
-        /// <param name="endpoint">The endpoint to hit.</param>
-        /// <param name="token">The token to use for authentication.</param>
-        /// <param name="input">The input to download audio from</param>
-        /// <returns>An audio stream</returns>
-        public Task<Stream?> DownloadAudio(string path, string token, string input);
-    }
-
-    public class GoogleWaveNetDownloader : ITextToSpeechDownloader
+    public class GoogleWaveNetDownloader : ITextToSpeechDownloadService
     {
         private readonly string _waveNetAddress = "https://cxl-services.appspot.com/proxy?url=https://texttospeech.googleapis.com/v1beta1/text:synthesize&token={0}";
         private readonly IHttpClientFactory _clientFactory;
@@ -29,8 +17,9 @@ namespace WaveNetCapture.Google
         {
             _clientFactory = clientFactory;
         }
+
         /// <inheritDoc />
-        public async Task<Stream?> DownloadAudio(string path, string token, string input)
+        public async Task<Stream> Download(string input)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, string.Format(_waveNetAddress, token));
             request.Headers.Add("Accept", "*/*");

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WaveNetCapture.Google.Models
+namespace Google.WaveNet.Models
 {
     public class AudioContentResponse
     {

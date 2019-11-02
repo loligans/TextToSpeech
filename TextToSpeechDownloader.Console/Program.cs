@@ -1,12 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Http;
-using System;
+﻿using Google.WaveNet;
+using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using WaveNetCapture.Google;
+using TextToSpeechDownloader.Common;
 
-namespace WaveNetCapture
+namespace TextToSpeechDownloader
 {
     class Program
     {
@@ -28,7 +27,7 @@ namespace WaveNetCapture
                         };
                     });
 
-            services.AddTransient<ITextToSpeechDownloader, GoogleWaveNetDownloader>();
+            services.AddTransient<ITextToSpeechDownloadService, GoogleWaveNetDownloader>();
             services.AddTransient<Application>();
 
             return services;
