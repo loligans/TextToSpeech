@@ -5,15 +5,15 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using TextToSpeechDownloader.Common;
+using TextToSpeech.Common;
 
 namespace Google.WaveNet
 {
-    public class GoogleWaveNetDownloader : ITextToSpeechDownloadService
+    public class GoogleWaveNetService : ITextToSpeechService
     {
         private readonly string _waveNetAddress = "https://cxl-services.appspot.com/proxy?url=https://texttospeech.googleapis.com/v1beta1/text:synthesize&token={0}";
         private readonly IHttpClientFactory _clientFactory;
-        public GoogleWaveNetDownloader(IHttpClientFactory clientFactory)
+        public GoogleWaveNetService(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
         }
@@ -21,7 +21,8 @@ namespace Google.WaveNet
         /// <inheritDoc />
         public async Task<Stream> Download(string input)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, string.Format(_waveNetAddress, token));
+            // TODO: Add token
+            var request = new HttpRequestMessage(HttpMethod.Post, string.Format(_waveNetAddress, ""));
             request.Headers.Add("Accept", "*/*");
             request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
             request.Headers.Add("Accept-Language", "en-US,en;q=0.5");
@@ -39,13 +40,12 @@ namespace Google.WaveNet
             {
                 var stream = response.Content.ReadAsStreamAsync();
                 var audioResponse = await JsonSerializer.DeserializeAsync<AudioContentResponse>(await stream);
-                byte[] audio = Convert.FromBase64String(audioResponse.audioContent);
-                await File.WriteAllBytesAsync(path, audio);
+                byte[] rawAudio = Convert.FromBase64String(audioResponse.audioContent);
+                var rawAudioStream = new MemoryStream(rawAudio);
+                return rawAudioStream;
             }
             
             return null;
         }
-
-        
     }
 }

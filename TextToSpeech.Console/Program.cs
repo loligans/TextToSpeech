@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TextToSpeechDownloader.Common;
+using TextToSpeech.Common;
 
-namespace TextToSpeechDownloader
+namespace TextToSpeech
 {
     class Program
     {
@@ -27,7 +27,7 @@ namespace TextToSpeechDownloader
                         };
                     });
 
-            services.AddTransient<ITextToSpeechDownloadService, GoogleWaveNetDownloader>();
+            services.AddTransient<ITextToSpeechService, GoogleWaveNetService>();
             services.AddTransient<Application>();
 
             return services;

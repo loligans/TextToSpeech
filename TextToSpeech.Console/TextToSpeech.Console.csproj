@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TextToSpeechDownloader.Engines\Google\WaveNet\WaveNet.csproj" />
+    <ProjectReference Include="..\TextToSpeech.Engines\TextToSpeech.Engines.Google\TextToSpeech.Engines.Google.WaveNet\TextToSpeech.Engines.Google.WaveNet.csproj" />
   </ItemGroup>
 
 </Project>

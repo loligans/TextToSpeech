@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TextToSpeechDownloader.CommandLine
+namespace TextToSpeech.CommandLine
 {
     public class Options
     {

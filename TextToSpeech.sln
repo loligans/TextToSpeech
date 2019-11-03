@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextToSpeechDownloader.Console", "TextToSpeechDownloader.Console\TextToSpeechDownloader.Console.csproj", "{BD7B9E79-F514-4A39-B6F5-85F34513157C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextToSpeech.Console", "TextToSpeech.Console\TextToSpeech.Console.csproj", "{BD7B9E79-F514-4A39-B6F5-85F34513157C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TextToSpeechDownloader.Engines", "TextToSpeechDownloader.Engines", "{0AD9DD58-CB90-4FAD-8CE7-A55DA77AEFB2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TextToSpeech.Engines", "TextToSpeech.Engines", "{0AD9DD58-CB90-4FAD-8CE7-A55DA77AEFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeechDownloader.Common", "TextToSpeechDownloader.Common\TextToSpeechDownloader.Common.csproj", "{35BFD892-8ECD-4645-AF99-5B0CA97CBE24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeech.Common", "TextToSpeech.Common\TextToSpeech.Common.csproj", "{35BFD892-8ECD-4645-AF99-5B0CA97CBE24}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Google", "Google", "{692546E5-0ED5-4073-B98B-EB75537466C5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TextToSpeech.Engines.Google", "TextToSpeech.Engines\TextToSpeech.Engines.Google", "{692546E5-0ED5-4073-B98B-EB75537466C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaveNet", "TextToSpeechDownloader.Engines\Google\WaveNet\WaveNet.csproj", "{C5F35C69-984F-4885-AAED-C389A8D9FE67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextToSpeech.Engines.Google.WaveNet", "TextToSpeech.Engines\TextToSpeech.Engines.Google\TextToSpeech.Engines.Google.WaveNet\TextToSpeech.Engines.Google.WaveNet.csproj", "{C5F35C69-984F-4885-AAED-C389A8D9FE67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

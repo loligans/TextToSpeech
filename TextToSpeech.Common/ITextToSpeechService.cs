@@ -2,9 +2,9 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace TextToSpeechDownloader.Common
+namespace TextToSpeech.Common
 {
-    public interface ITextToSpeechDownloadService
+    public interface ITextToSpeechService
     {
         /// <summary>
         /// Downloads audio from a TTS engine.
