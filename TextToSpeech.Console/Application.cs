@@ -1,22 +1,23 @@
-﻿using Google.WaveNet;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using TextToSpeech.Common;
+using TextToSpeech.Engines.Google.WaveNet;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TextToSpeech
 {
     public class Application
     {
-        private readonly ITextToSpeechService _textToSpeechService;
-        public Application(ITextToSpeechService textToSpeechService)
+        private readonly IServiceProvider _serviceProvider;
+        public Application(IServiceProvider serviceProvider)
         {
-            _textToSpeechService = textToSpeechService;
+            _serviceProvider = serviceProvider;
         }
         public async Task Run(string[] args)
         {
-            await _textToSpeechService.Download("你好，你好吗");
+            var factory = _serviceProvider.GetService<ITextToSpeechServiceFactory<GoogleWaveNetServiceFactory>>();
+            var service = factory.Create();
+            await service.Download("你好，你好吗");
         }
     }
 }
