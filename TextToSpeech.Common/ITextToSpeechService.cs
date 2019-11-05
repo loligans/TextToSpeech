@@ -11,6 +11,6 @@ namespace TextToSpeech.Common
         /// </summary>
         /// <param name="input">The input to download audio from</param>
         /// <returns>An audio stream</returns>
-        public Task<Stream> Download(string input);
+        public Task<Stream?> Download(string input);
     }
 }
