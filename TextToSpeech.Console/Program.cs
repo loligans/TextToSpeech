@@ -1,9 +1,9 @@
-﻿using Google.WaveNet;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TextToSpeech.Common;
+using TextToSpeech.Engines.Google.WaveNet;
 
 namespace TextToSpeech
 {
@@ -27,8 +27,8 @@ namespace TextToSpeech
                         };
                     });
 
-            services.AddTransient<ITextToSpeechService, GoogleWaveNetService>();
-            services.AddTransient<Application>();
+            services.AddSingleton<ITextToSpeechServiceFactory<GoogleWaveNetServiceFactory>>();
+            services.AddSingleton<Application>();
 
             return services;
         }
