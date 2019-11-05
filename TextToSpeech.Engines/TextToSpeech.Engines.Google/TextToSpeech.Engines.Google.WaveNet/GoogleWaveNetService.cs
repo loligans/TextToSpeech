@@ -1,25 +1,33 @@
 ﻿using Google.WaveNet.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TextToSpeech.Common;
 
-namespace Google.WaveNet
+namespace TextToSpeech.Engines.Google.WaveNet
 {
-    public class GoogleWaveNetService : ITextToSpeechService
+    internal class GoogleWaveNetService : ITextToSpeechService
     {
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IDictionary<string, string> _httpHeaders;
+        private readonly ICredentials _credentials;
         private readonly string _waveNetAddress = "https://cxl-services.appspot.com/proxy?url=https://texttospeech.googleapis.com/v1beta1/text:synthesize&token={0}";
-        private readonly IHttpClientFactory _clientFactory;
-        public GoogleWaveNetService(IHttpClientFactory clientFactory)
+
+        public GoogleWaveNetService(IHttpClientFactory httpClientFactory, IDictionary<string, string> httpHeaders, ICredentials credentials)
         {
-            _clientFactory = clientFactory;
+            _httpClientFactory = httpClientFactory;
+            _httpHeaders = httpHeaders;
+            _credentials = credentials;
         }
 
         /// <inheritDoc />
-        public async Task<Stream> Download(string input)
+        public async Task<Stream?> Download(string input)
         {
             // TODO: Add token
             var request = new HttpRequestMessage(HttpMethod.Post, string.Format(_waveNetAddress, ""));
@@ -33,7 +41,7 @@ namespace Google.WaveNet
 
             request.Content = new StringContent("{\"input\":{\"text\":\"你好，你好吗\"},\"voice\":{\"languageCode\":\"cmn-CN\",\"name\":\"cmn-CN-Wavenet-B\"},\"audioConfig\":{\"audioEncoding\":\"LINEAR16\",\"pitch\":0,\"speakingRate\":1}}", Encoding.UTF8, "text/plain");
 
-            var client = _clientFactory.CreateClient("google");
+            var client = _httpClientFactory.CreateClient("google");
             var response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
