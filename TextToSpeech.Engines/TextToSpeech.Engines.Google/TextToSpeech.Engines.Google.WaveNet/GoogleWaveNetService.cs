@@ -15,11 +15,11 @@ namespace TextToSpeech.Engines.Google.WaveNet
     internal class GoogleWaveNetService : ITextToSpeechService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IDictionary<string, string> _httpHeaders;
-        private readonly ICredentials _credentials;
+        private readonly IDictionary<string, string?> _httpHeaders;
+        private readonly string _credentials;
         private readonly string _waveNetAddress = "https://cxl-services.appspot.com/proxy?url=https://texttospeech.googleapis.com/v1beta1/text:synthesize&token={0}";
 
-        public GoogleWaveNetService(IHttpClientFactory httpClientFactory, IDictionary<string, string> httpHeaders, ICredentials credentials)
+        public GoogleWaveNetService(IHttpClientFactory httpClientFactory, IDictionary<string, string?> httpHeaders, string credentials)
         {
             _httpClientFactory = httpClientFactory;
             _httpHeaders = httpHeaders;
@@ -52,7 +52,7 @@ namespace TextToSpeech.Engines.Google.WaveNet
                 var rawAudioStream = new MemoryStream(rawAudio);
                 return rawAudioStream;
             }
-            
+
             return null;
         }
     }
